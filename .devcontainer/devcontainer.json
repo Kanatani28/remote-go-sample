@@ -1,14 +1,18 @@
 {
 	"name": "Go Sample",
-	"dockerFile": "Dockerfile",
+	// dockerFile -> dockerComposeFile
+	"dockerComposeFile": [
+		"docker-compose.yml"
+	],
+	// docker-compose.servicesのどのコンテナで作業するのかを設定する
+	"service": "app",
+	// workspaceを設定する
+	"workspaceFolder": "/app",
 	"runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
 
-	// Use 'appPort' to create a container with published ports. If the port isn't working, be sure
-	// your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
-	"appPort": [9000],
+	// docker-compose.yml内で設定できるので不要
+	//"appPort": [9000],
 
-	// Use 'settings' to set *default* container specific settings.json values on container create. 
-	// You can edit these settings after create using File > Preferences > Settings > Remote.
 	"settings": { 
 		"terminal.integrated.shell.linux": "/bin/bash",
 		"go.gopath": "/go",
@@ -16,13 +20,8 @@
 		"go.useLanguageServer": true
 	},
 
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "go version",
-
-	// Comment out the next line to run as root
 	"remoteUser": "vscode",
 
-	// Add the IDs of extensions you want installed when the container is created in the array below.
 	"extensions": [
 		"ms-vscode.go"
 	]
